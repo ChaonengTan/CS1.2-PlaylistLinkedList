@@ -32,6 +32,8 @@ while True:
   elif user_selection == 2:
     song_title = input('What song do you want to add? ')
     playlist.add_song(song_title)
+    playlist.add_song('no')
+    playlist.add_song('maybe')
 
 
 
@@ -60,4 +62,3 @@ while True:
   # Message for invalid input
   else:
     print('That is not a valid option. Try again.\n')
-

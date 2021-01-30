@@ -9,7 +9,7 @@ class Playlist:
 
   def add_song(self, title):
     newSong = Song(title)
-    newSong.set_next_song = self.__first_song
+    newSong.set_next_song(self.__first_song)
     self.__first_song = newSong
 
 
@@ -19,10 +19,10 @@ class Playlist:
     current_node = self.__first_song
     counter = 0 
     while current_node != None:
-      if current_node.get_title == title:
+      if current_node.get_title() == title:
         return counter
       counter = counter + 1
-      current_node = current_node.get_next_song
+      current_node = current_node.get_next_song()
     return -1
       
 
@@ -30,19 +30,22 @@ class Playlist:
   # TODO: Create a method called remove_song that removes a song from the playlist. This method takes one parameter, title, which is the song that should be removed. 
 
   def remove_song(self, title):
-    if self.__first_song == title:
-        self.__first_song = self.__first_song.get_next_song
+    if self.__first_song.get_title() == title:
+        self.__first_song = self.__first_song.get_next_song()
         print('Item Removed')
         return
     current_node = self.__first_song
-    def checkTrue(title, current_node):
-      if current_node.get_title == title:
-        return True
-      current_node = current_node.get_next_song
-      if checkTrue(title, current_node):
-        current_node.set_next_song = current_node.get_next_song.get_next_song
+    previous_node = None
+
+    while current_node != None:
+      previous_node = current_node
+      current_node = current_node.get_next_song()
+      if current_node.get_title() == title:
+        previous_node.set_next_song(current_node.get_next_song())
         print('Item Removed')
-    checkTrue(title, current_node)
+        return
+    print('title not detected')
+    return
 
 
 
@@ -53,7 +56,7 @@ class Playlist:
     counter = 0 
     while current_node != None:
       counter = counter + 1
-      current_node = current_node.get_next_song
+      current_node = current_node.get_next_song()
     return counter
 
 
@@ -68,8 +71,7 @@ class Playlist:
     current_node = self.__first_song
     counter = 0 
     while current_node != None:
-      print(f'{counter + 1}. {current_node.get_title}')
+      print(f'{counter + 1}. {current_node.get_title()}')
       counter = counter + 1
-      current_node = current_node.get_next_song
-
+      current_node = current_node.get_next_song()
   

@@ -30,10 +30,8 @@ class Song:
     return str(self.__title)
 
 
-  # TODO: Using the __repr__ dunder method, return a string formatted as the following:'Song Title -> Next Song Title'
+  # √: Using the __repr__ dunder method, return a string formatted as the following:'Song Title -> Next Song Title'
   def __repr__(self):
-    return f'{self.get_title} -> {self.get_next_song}'
+    if self.get_next_song() != None:
+      return f'{self.__title.title()} -> {str(self.__next_song).title()}'
 
-
-song = Song('yes')
-print(song.get_title)
